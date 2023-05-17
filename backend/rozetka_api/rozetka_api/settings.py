@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+import env as env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,14 +78,7 @@ WSGI_APPLICATION = "rozetka_api.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_DRIVER', 'django.db.backends.postgresql'),
-        'USER': os.environ.get('PG_USER', 'postgres'),
-        'PASSWORD': os.environ.get('PG_PASSWORD', 'postgres'),
-        'NAME': os.environ.get('PG_DB', 'postgres'),
-        'PORT': os.environ.get('PG_PORT', '5432'),
-        'HOST': os.environ.get('PG_HOST', 'localhost'),
-    }
+    'default': dj_database_url.config(default=env.str('DATABASE_URL')),
 }
 
 
