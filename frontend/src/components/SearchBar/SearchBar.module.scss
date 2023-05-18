@@ -1,0 +1,30 @@
+@use "../../mixins.scss" as mixin;
+
+.container {
+  width: 50%;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 12px;
+  border: 1px solid #000;
+  overflow: hidden;
+  align-items: center;
+
+  .icon {
+    color: rgb(130, 130, 130);
+    height: 24px;
+    width: 24px;
+    margin-inline: 8px;
+  }
+
+  .input {
+    border: none;
+    flex: 1;
+    outline: none;
+    font-size: 16px;
+
+    @include mixin.placeholder {
+      color: rgb(130, 130, 130);
+    }
+  }
+}
