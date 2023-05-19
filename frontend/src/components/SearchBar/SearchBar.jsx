@@ -11,7 +11,6 @@ const SearchBar = ({ value, setValue }) => {
   const handleSearch = () => {
     // product.filter((item) => item.name.includes(value))
   }
-
   return (
     <div className={styles.container}>
       <AiOutlineSearch className={styles.icon} />
