@@ -9,7 +9,7 @@ const SearchBar = ({ value, setValue }) => {
   }
 
   const handleSearch = () => {
-    // product.filter((item) => item.name.includes(value))
+    // product.filter((item) => item.title.includes(value))
   }
   return (
     <div className={styles.container}>
@@ -20,8 +20,8 @@ const SearchBar = ({ value, setValue }) => {
         onChange={handleChange}
         type="text"
         id="search"
-        placeholder="I am searching..."
-        name="search"
+        placeholder="Я шукаю..."
+        name="Пошук"
       />
       {/* microphone icon */}
       <SearchButton handleSearch={handleSearch} />
