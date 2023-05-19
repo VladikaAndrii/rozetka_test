@@ -3,6 +3,8 @@ from django.db import models
 
 class Category(models.Model):
     title = models.CharField(max_length=255, null=False)
+    slug = models.CharField(max_length=255, null=False)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     parent_category = models.ForeignKey(
         "self", null=True, blank=True, related_name="children", on_delete=models.CASCADE
     )
@@ -14,10 +16,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(
-        Category, related_name="products", on_delete=models.CASCADE
-    )
+    category = models.ForeignKey(Category, related_name="products", on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=False)
+    slug = models.CharField(max_length=255, null=False)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     brand = models.CharField(max_length=128, null=True)
     country = models.CharField(max_length=128, null=True)
     color = models.CharField(max_length=128, null=True)
