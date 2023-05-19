@@ -1,4 +1,6 @@
+
 body {
+  position: relative;
   margin: 0;
   font-family: "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
@@ -14,4 +16,7 @@ p {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+* {
+  box-sizing: border-box;
 }
