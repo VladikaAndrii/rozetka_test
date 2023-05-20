@@ -1,7 +1,7 @@
 @use "../../mixins.scss" as mixin;
 
 .container {
-  width: 50%;
+  width: 40%;
   height: 40px;
   background-color: #fff;
   display: flex;
@@ -9,6 +9,8 @@
   border: 1px solid #000;
   overflow: hidden;
   align-items: center;
+  margin-left: auto;
+  margin-right: 12px;
 
   .icon {
     color: rgb(130, 130, 130);
