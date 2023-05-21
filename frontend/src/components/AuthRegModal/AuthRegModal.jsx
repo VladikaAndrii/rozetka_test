@@ -3,30 +3,19 @@ import Authform from "../AuthForm/AuthForm"
 import RegistrationForm from "../RegistrationForm/RegistrationForm"
 import styles from "./AuthRegModal.module.scss"
 
-const AuthRegModal = ({ open = true, setOpen }) => {
+const AuthRegModal = ({setOpenAuth}) => {
   const [isAuthMode, setIsAuthMode] = useState(true)
 
   const handleSwitch = () => {
     setIsAuthMode(isAuthMode ? false : true)
   }
 
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
-    <div
-      className={styles.background}
-      style={open ? { display: "flex" } : { display: "none" }}
-      onClick={handleClose}
-    >
       <div
-        className={styles.modal}
-        onClick={(event) => event.stopPropagation()}
-      >
+        className={styles.modal}>
         <div className={styles.modalHeader}>
           <h1 className={styles.title}>{isAuthMode ? "Вхід" : "Реєстрація"}</h1>
-          <button className={styles.closeBtn} onClick={handleClose} />
+          <button className={styles.closeBtn} onClick={() => setOpenAuth(false)} />
         </div>
         <div className={styles.formContainer}>
           <form className={styles.form}>
@@ -50,7 +39,7 @@ const AuthRegModal = ({ open = true, setOpen }) => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   )
 }
 export default AuthRegModal
