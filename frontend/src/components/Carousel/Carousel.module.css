@@ -1,0 +1,28 @@
+
+.container{
+    position: absolute;
+    left:200px;
+    height: 390px;
+    width: 955px;
+}
+.iconBlock{
+    position: relative;
+    width: 150px;
+    height: 50px;
+}
+.nextIcon,
+.prevIcon {
+    position:absolute;
+    width: 50px;
+    height: 50px;
+}
+.nextIcon{
+    right: 12px;
+}
+.prevIcon{
+    left: 12px
+}
+.listItem{
+    height: 390px;
+    width: 955px;
+}

@@ -1,6 +1,6 @@
+import { AiOutlineSearch } from "react-icons/ai"
 import SearchButton from "../SearchButton/SearchButton"
 import styles from "./SearchBar.module.scss"
-import { AiOutlineSearch } from "react-icons/ai"
 
 const SearchBar = ({ value, setValue }) => {
   const handleChange = (e) => {
@@ -11,6 +11,7 @@ const SearchBar = ({ value, setValue }) => {
   const handleSearch = () => {
     // product.filter((item) => item.title.includes(value))
   }
+
   return (
     <div className={styles.container}>
       <AiOutlineSearch className={styles.icon} />
