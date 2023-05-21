@@ -1,12 +1,21 @@
 version: '3.9'
 
 services:
-  djangoapp:
-    container_name: djangoapp
-    build: .
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
+    volumes:
+      - ./rozetka_api:/app
+      - ./data/web:/vol/web
     environment:
+      - SECRET_KEY=rozetka_api
+      - DEBUG=1
       - PG_USER=postgres
       - PG_PASSWORD=postgres
       - PG_DB=postgres
@@ -16,7 +25,7 @@ services:
       - db
   db:
     container_name: db
-    image: postgres:14
+    image: postgres:14-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
