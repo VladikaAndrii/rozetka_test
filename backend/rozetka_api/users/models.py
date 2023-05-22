@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
 
 class UserManager(BaseUserManager):
@@ -24,6 +25,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(unique=True)
 	first_name = models.CharField(max_length=30)
 	last_name = models.CharField(max_length=30)
+	is_verified = models.BooleanField(default=False)
 	is_active = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=False)
 
@@ -37,3 +39,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 	def get_short_name(self):
 		return self.first_name
+
+	def refresh_token(self):
+		refresh_token = RefreshToken.for_user(self)
+		return refresh_token
+
+	def access_token(self):
+		access_token = AccessToken.for_user(self)
+		return access_token

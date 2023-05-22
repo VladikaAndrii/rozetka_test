@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Carousel from "./components/Caroules/Carousel"
 import "./index.css"
 
+
 function App() {
   return (
     <div className="App">
