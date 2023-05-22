@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar/Navbar"
+import Carousel from "./components/Caroules/Carousel"
 import "./index.css"
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Navbar />}>
             {/* <Route index element={<HomeScreen />} /> */}
+            <Route index element={<Carousel />} />
           </Route>
         </Routes>
       </Router>

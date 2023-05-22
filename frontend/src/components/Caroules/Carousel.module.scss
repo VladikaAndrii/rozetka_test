@@ -1,0 +1,41 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .nextBtn,
+    .prevBtn {
+        position: absolute;
+        z-index: 5;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background-color: transparent;
+        height: 50px;
+        width: 50px;
+        transition: 0.3s;
+        cursor: pointer;
+        img{
+            position: absolute;
+            top: 50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .nextBtn:hover,
+    .prevBtn:hover{
+        opacity: 0.7;
+    }
+    .nextBtn:active,
+    .prevBtn:active{
+        scale: 0.98;
+    }
+    .nextBtn{
+        right: 12px;
+    }
+    .prevBtn{
+        left: 12px
+    }
+}
