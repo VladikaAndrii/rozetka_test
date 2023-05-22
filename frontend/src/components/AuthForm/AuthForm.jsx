@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import CustomInput from "../CustomInput/CustomInput";
+import { validationEmail, validationPhone } from "../../utilits/validations";
 import styles from "./AuthForm.module.scss";
 
 const Authform = () => {
   const [login, setLogin] = useState("");
+  const [isEmail, setIsEmail] = useState(true);
+  const [isPhone, setIsPhone] = useState(true);
   const [password, setPassword] = useState("");
+  const [isPassword, setIsPassword] = useState(true);
   const [isDisBtn, setIsDisBtn] = useState(true);
   const [isRemember, setIsRemember] = useState(false);
 
@@ -14,12 +18,40 @@ const Authform = () => {
   };
 
   useEffect(() => {
-    if (login.length > 0 && password.length > 0) {
+    if (login.length > 0 && password.length > 6 && (isEmail || isPhone)) {
       setIsDisBtn(false);
     } else {
       setIsDisBtn(true);
     }
-  }, [login, password]);
+  }, [login, password, isEmail, isPhone]);
+
+  const checkTypeValueError = (e) => {
+    const name = e.target.name
+    if(name === names.login){
+      setIsEmail(false)
+      setIsPhone(false)
+      if(validationEmail(login)){
+        setIsEmail(true)
+        return
+      }
+      if(validationPhone(login)){
+        setIsPhone(true)
+        return
+      }
+    }
+    if(name === names.password){
+        if(password.length < 0){
+          return
+        }
+        if(password.length > 0 && password.length < 6){
+          setIsPassword(false)
+          return
+        }
+        if(password.length >= 6){
+          setIsPassword(true)
+        } 
+    }
+  }
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -45,6 +77,8 @@ const Authform = () => {
 
   return (
     <>
+      <div className={styles.containerInput} onBlur={checkTypeValueError}>
+      {!isEmail && !isPhone && <p className={styles.error}>Невірні данні</p>}
       <CustomInput
         type={"text"}
         name={names.login}
@@ -53,6 +87,9 @@ const Authform = () => {
         placeholder={"Ел. пошта або телефон"}
         className={styles.input}
       />
+      </div>
+      <div className={styles.containerInput} onBlur={checkTypeValueError}>
+      {!isPassword && <p className={styles.error}>Пароль має містити не меншe 6-ти символів</p>}
       <CustomInput
         type={"password"}
         name={names.password}
@@ -62,6 +99,7 @@ const Authform = () => {
         isPassword={true}
         className={styles.input + " " + styles.inputEdited}
       />
+      </div>
       <div className={styles.rememberBlock}>
         <div className={styles.checkboxLabel}>
           <input
