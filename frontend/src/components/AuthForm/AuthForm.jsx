@@ -26,32 +26,32 @@ const Authform = () => {
   }, [login, password, isEmail, isPhone]);
 
   const checkTypeValueError = (e) => {
-    const name = e.target.name
-    if(name === names.login){
-      setIsEmail(false)
-      setIsPhone(false)
-      if(validationEmail(login)){
-        setIsEmail(true)
-        return
+    const name = e.target.name;
+    if (name === names.login) {
+      setIsEmail(false);
+      setIsPhone(false);
+      if (validationEmail(login)) {
+        setIsEmail(true);
+        return;
       }
-      if(validationPhone(login)){
-        setIsPhone(true)
-        return
+      if (validationPhone(login)) {
+        setIsPhone(true);
+        return;
       }
     }
-    if(name === names.password){
-        if(password.length < 0){
-          return
-        }
-        if(password.length > 0 && password.length < 6){
-          setIsPassword(false)
-          return
-        }
-        if(password.length >= 6){
-          setIsPassword(true)
-        } 
+    if (name === names.password) {
+      if (password.length === 0) {
+        return;
+      }
+      if (password.length > 0 && password.length < 6) {
+        setIsPassword(false);
+        return;
+      }
+      if (password.length >= 6) {
+        setIsPassword(true);
+      }
     }
-  }
+  };
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -78,27 +78,33 @@ const Authform = () => {
   return (
     <>
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
-      {!isEmail && !isPhone && <p className={styles.error}>Невірні данні</p>}
-      <CustomInput
-        type={"text"}
-        name={names.login}
-        value={login}
-        handleChange={handleChange}
-        placeholder={"Ел. пошта або телефон"}
-        className={styles.input}
-      />
+        {!isEmail && !isPhone && (
+          <p className={styles.error}>Не корректна пошта або номер телефону</p>
+        )}
+        <CustomInput
+          type={"text"}
+          name={names.login}
+          value={login}
+          handleChange={handleChange}
+          placeholder={"Ел. пошта або телефон"}
+          className={styles.input}
+        />
       </div>
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
-      {!isPassword && <p className={styles.error}>Пароль має містити не меншe 6-ти символів</p>}
-      <CustomInput
-        type={"password"}
-        name={names.password}
-        value={password}
-        handleChange={handleChange}
-        placeholder={"Пароль"}
-        isPassword={true}
-        className={styles.input + " " + styles.inputEdited}
-      />
+        {!isPassword && (
+          <p className={styles.error}>
+            Пароль має містити не меншe 6-ти символів
+          </p>
+        )}
+        <CustomInput
+          type={"password"}
+          name={names.password}
+          value={password}
+          handleChange={handleChange}
+          placeholder={"Пароль"}
+          isPassword={true}
+          className={styles.input + " " + styles.inputEdited}
+        />
       </div>
       <div className={styles.rememberBlock}>
         <div className={styles.checkboxLabel}>
