@@ -41,10 +41,6 @@ class SignupView(CreateAPIView):
         data_response = {"email": user_data["email"],
                          "success": True}
         return Response(data_response, status=HTTP_201_CREATED)
-        # return Response({
-        #     'user': UserSerializer(user, context=self.get_serializer_context()).data,
-        #     'token': token.key,
-        # }, status=HTTP_201_CREATED)
 
 
 class VerifyEmail(APIView):
@@ -61,7 +57,8 @@ class VerifyEmail(APIView):
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            return Response({"email": "Email successful activated"}, status=HTTP_200_OK)
+            return Response({"email": "Email successful activated",
+                             "success": True}, status=HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:
             return Response({"email": "Activation Expired"}, status=HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:

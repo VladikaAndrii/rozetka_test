@@ -1,18 +1,20 @@
 import os
 from datetime import timedelta
 from pathlib import Path
-from dotenv import load_dotenv
-import dj_database_url
-
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-*+)nj2ez#i5yz&4+)^8#@gt*9a%s$uzl0nf$4zv+#qkq5i3+))"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get("ALLOWED_HOSTS", "").split(","),
+    )
+)
 
 AUTH_USER_MODEL = "users.User"
 
@@ -64,12 +66,11 @@ WSGI_APPLICATION = "rozetka_api.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_DRIVER', 'django.db.backends.postgresql'),
-        'USER': os.environ.get('PG_USER', 'postgres'),
-        'PASSWORD': os.environ.get('PG_PASSWORD', 'postgres'),
-        'NAME': os.environ.get('PG_DB', 'postgres'),
-        'PORT': os.environ.get('PG_PORT', '5432'),
-        'HOST': os.environ.get('PG_HOST', 'localhost'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -90,7 +91,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "static/static/"
+MEDIA_URL = "static/media/"
+
+MEDIA_ROOT = "/vol/web/media"
+STATIC_ROOT = "/vol/web/static"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
