@@ -4,9 +4,9 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = bool(int(os.environ.get("DEBUG", 0)))
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 ALLOWED_HOSTS.extend(
@@ -67,11 +67,10 @@ WSGI_APPLICATION = "rozetka_api.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': os.environ.get('PG_USER', 'postgres'),
-        'PASSWORD': os.environ.get('PG_PASSWORD', 'postgres'),
-        'NAME': os.environ.get('PG_DB', 'postgres'),
-        'PORT': os.environ.get('PG_PORT', '5432'),
-        'HOST': os.environ.get('PG_HOST', 'localhost'),
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -92,8 +91,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/static"
-MEDIA_URL = "static/media"
+STATIC_URL = "static/static/"
+MEDIA_URL = "static/media/"
 
 MEDIA_ROOT = "/vol/web/media"
 STATIC_ROOT = "/vol/web/static"

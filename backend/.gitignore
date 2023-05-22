@@ -2,3 +2,4 @@ authorization/__pycache__/
 authorization/migrations/__pycache__/
 rozetka_api/__pycache__/
 /data
+.env
