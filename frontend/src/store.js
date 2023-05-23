@@ -1,7 +1,14 @@
-// import { configureStore } from "@reduxjs/toolkit"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import basketReducer from "./features/basketSlice"
+import productsReducer from "./features/productsSlice"
 
-// const store = configureStore({
-//    reducer: rootReducer,
-// })
+const rootReducer = combineReducers({
+  basket: basketReducer,
+  products: productsReducer,
+})
 
-// export default store
+const store = configureStore({
+  reducer: rootReducer,
+})
+
+export default store
