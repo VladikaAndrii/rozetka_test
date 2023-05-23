@@ -1,7 +1,10 @@
 @import "../../mixins.scss";
 
 .screen {
-  padding: 20px 40px;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-block: 40px;
+
   .block {
     display: flex;
     flex-direction: column;

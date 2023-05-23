@@ -3,9 +3,12 @@ import SearchButton from "../SearchButton/SearchButton"
 import styles from "./SearchBar.module.scss"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
-const SearchBar = ({ value, setValue }) => {
-  const products = useSelector((state) => state.product)
+const SearchBar = () => {
+  const products = useSelector((state) => state.products)
+  const [value, setValue] = useState("")
+
   const navigation = useNavigate()
 
   const handleChange = (e) => {
@@ -14,8 +17,11 @@ const SearchBar = ({ value, setValue }) => {
   }
 
   const handleSearch = () => {
-    const searchProducts = products.filter((item) => item.title.includes(value))
-    navigation("/productsScreen", { state: { searchProducts } })
+    if (!value) return
+    const searchProducts = products.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    )
+    navigation("/products-searched", { state: { searchProducts } })
   }
 
   return (

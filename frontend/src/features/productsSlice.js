@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export const productsReducer = createSlice({
-  name: "producrs",
+  name: "products",
   initialState: [],
   reducers: {
     setProducts: (state, { payload }) => (state = [...payload]),

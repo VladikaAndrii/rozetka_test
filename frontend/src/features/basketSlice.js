@@ -44,7 +44,7 @@ export const basketReducer = createSlice({
       return [...state, { ...payload.product, quantity: payload.quantity }]
     },
     clearItem: (state, { payload }) => {
-      state.filter((item) => item.id !== payload.id)
+      return state.filter((item) => item.id !== payload.id)
     },
     clearBasket: (state) => {
       state = []

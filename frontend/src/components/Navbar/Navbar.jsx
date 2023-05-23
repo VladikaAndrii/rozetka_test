@@ -9,6 +9,7 @@ import { useState } from "react"
 import Catalog from "../Catalog/Catalog"
 import Basket from "../Basket/Basket"
 import { useNavigate } from "react-router-dom"
+import Badge from "../Badge/Badge"
 
 const Navbar = () => {
   const [openAuth, setOpenAuth] = useState(false)
@@ -40,7 +41,9 @@ const Navbar = () => {
           <RxPerson className={styles.icon} />
         </div>
         <div className={styles.iconContainer} onClick={handleOpenBasket}>
-          <AiOutlineShoppingCart className={styles.icon} />
+          <Badge>
+            <AiOutlineShoppingCart className={styles.icon} />
+          </Badge>
         </div>
       </nav>
 

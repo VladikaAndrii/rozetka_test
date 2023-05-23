@@ -2,6 +2,7 @@
 
 .container {
   display: flex;
+  border-bottom: solid 1px $secondary;
 
   .image {
     width: 80px;
@@ -41,6 +42,7 @@
           transition: 250ms linear;
           width: 18px;
           height: 18px;
+          pointer-events: none;
         }
       }
 

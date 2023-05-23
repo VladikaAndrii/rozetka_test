@@ -8,12 +8,14 @@ const Basket = ({ setOpen }) => {
   const basket = useSelector((state) => state.basket)
   const navigation = useNavigate()
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation()
     setOpen(false)
   }
 
   const handleCheckout = () => {
     navigation("/checkout")
+    setOpen(false)
   }
 
   return (
@@ -27,7 +29,7 @@ const Basket = ({ setOpen }) => {
       {basket?.length ? (
         <div className={styles.products}>
           {basket.map((product) => (
-            <ProductRow product={product} />
+            <ProductRow key={product.id} product={product} />
           ))}
         </div>
       ) : (
