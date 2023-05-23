@@ -1,15 +1,17 @@
 .background {
   background-color: rgba(0, 0, 0, 0.4);
   inset: 0;
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20;
+  overflow: hidden;
 
   .modal {
     display: inline-block;
     box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    z-index: 30;
     background-color: #fff;
     border-radius: 12px;
   }

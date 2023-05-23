@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fd3939;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+  }
+}

@@ -3,12 +3,19 @@ import styles from "./Modal.module.scss"
 
 const Modal = ({ children, className, setOpen }) => {
   const handleClose = (e) => {
-    e.stopPropagation()
     setOpen(false)
   }
+
+  const handleContentClick = (e) => {
+    e.stopPropagation()
+  }
+
   return (
     <div className={styles.background} onClick={handleClose}>
-      <div className={`${styles.modal} ${`${className}` ?? ""}`}>
+      <div
+        className={`${styles.modal} ${`${className}` ?? ""}`}
+        onClick={handleContentClick}
+      >
         {children}
       </div>
     </div>
