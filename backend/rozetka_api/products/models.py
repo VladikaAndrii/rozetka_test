@@ -19,6 +19,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name="products", on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=False)
     slug = models.CharField(max_length=255, null=False)
+    description = models.CharField(null=True)
     brand = models.CharField(max_length=128, null=True)
     country = models.CharField(max_length=128, null=True)
     color = models.CharField(max_length=128, null=True)
