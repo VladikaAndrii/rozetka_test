@@ -1,0 +1,66 @@
+@import "../../mixins.scss";
+
+.container {
+  display: flex;
+
+  .image {
+    width: 80px;
+    height: 100px;
+    margin-block: 5px;
+    background: no-repeat center;
+    background-size: cover;
+  }
+
+  .subContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-block: 10px;
+
+    .block {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 8px;
+
+      .title {
+        font-size: 16px;
+      }
+
+      .iconContainer {
+        &:hover {
+          cursor: pointer;
+          .icon {
+            color: $main-hover;
+          }
+        }
+        .icon {
+          pointer-events: none;
+          color: $main-color;
+          transition: 250ms linear;
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .action {
+          font-size: 18px;
+          font-weight: 600;
+          padding-inline: 10px;
+          cursor: pointer;
+        }
+
+        .input {
+          width: 30px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
