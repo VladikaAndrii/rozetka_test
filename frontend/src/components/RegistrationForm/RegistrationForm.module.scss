@@ -1,0 +1,40 @@
+.containerInput{
+  position: relative;
+  .error{
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    font-size: 10px;
+    color: red;
+  }
+.input {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.input::placeholder {
+  color: #a7a7a7;
+}
+}
+.conditions {
+  font-size: 15px;
+  line-height: 18px;
+  padding: 0 50px 40px 0;
+}
+.conditionsLink {
+  color: #3c84ab;
+  cursor: pointer;
+}
+.btnSubmit {
+  height: 39px;
+  background: #19139f;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+.btnSubmit:disabled {
+  opacity: 0.6;
+}
