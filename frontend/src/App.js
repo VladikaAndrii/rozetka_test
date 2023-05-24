@@ -12,7 +12,7 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen"
 function App() {
   const dispatch = useDispatch()
   const { data, error, loading } = useFetch({
-    url: "http://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productsproduct/",
+    url: "https://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productsproduct/",
   })
 
   useEffect(() => {
