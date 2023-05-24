@@ -15,6 +15,7 @@ const Checkout = () => {
     phone: "",
     address: "",
   })
+  const allInputs = Object.values(inputs).every((value) => value !== "")
 
   const initialReduce = deliveryCost !== "безкоштовно" ? deliveryCost : 0
 
@@ -118,7 +119,11 @@ const Checkout = () => {
                 ₴
               </p>
             </div>
-            <button type="submit" className={styles.button}>
+            <button
+              type="submit"
+              className={styles.button}
+              disabled={!allInputs}
+            >
               Підтверджую замовлення
             </button>
             <p>Підтверджуючи замовлення, я приймаю умови:</p>
@@ -146,9 +151,9 @@ const Checkout = () => {
               <div className={styles.circle}>1</div>
               <p className={styles.pointText}>Товар</p>
             </div>
-            {basket.map((item) => {
-              ;<ProductCheckoutRow product={item} />
-            })}
+            {basket.map((item) => (
+              <ProductCheckoutRow key={item.id} product={item} />
+            ))}
           </div>
 
           <div className={styles.container}>
