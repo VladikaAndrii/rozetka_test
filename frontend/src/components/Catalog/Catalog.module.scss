@@ -8,30 +8,86 @@
   padding: 6px 12px;
   gap: 6px;
   transition: 300ms linear;
-  margin-left: 16px;
+  margin-left: 70px;
+  position: relative;
+  background-color: $main-color;
 
   &:hover {
-    background-color: $main-color;
     cursor: pointer;
+    background: none;
 
-    .icon {
-      color: #fff;
-    }
-
+    .icon,
     .text {
-      color: #fff;
+      color: $main-color;
     }
   }
 
   .icon {
     pointer-events: none;
-    color: $main-color;
     width: 20px;
     height: 20px;
+    color: #fff;
   }
 
   .text {
-    color: $main-color;
+    color: #fff;
     font-weight: 600;
+  }
+
+  .modal {
+    position: absolute;
+    top: 35px;
+    width: 180px;
+    height: max-content;
+    padding: 10px;
+    background: #fff;
+    z-index: 20;
+    box-shadow: 1px 9px 16px -1px rgba(163, 163, 163, 0.65);
+    border-radius: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .key {
+      font-weight: 600;
+      margin-block: 10px;
+
+      &:hover {
+        color: $blue;
+      }
+    }
+
+    .active {
+      color: $blue;
+    }
+
+    .disabled {
+      cursor: not-allowed;
+    }
+
+    .values {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      gap: 6px;
+      opacity: 0;
+      animation: dropAnimation 500ms ease forwards;
+
+      .value {
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
+
+@keyframes dropAnimation {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
