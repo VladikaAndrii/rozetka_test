@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import styles from "./Carousel.module.scss";
+import { useState } from "react"
+import { useTheme } from "@mui/material/styles"
+import Box from "@mui/material/Box"
+import SwipeableViews from "react-swipeable-views"
+import { autoPlay } from "react-swipeable-views-utils"
+import styles from "./Carousel.module.scss"
 
 const images = [
   {
@@ -26,28 +26,28 @@ const images = [
     imgPath:
       "https://images.pexels.com/photos/174662/pexels-photo-174662.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
-];
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+]
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
-function SwipeableTextMobileStepper() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
+function Carousel() {
+  const theme = useTheme()
+  const [activeStep, setActiveStep] = useState(0)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) =>
       prevActiveStep < images.length - 1 ? prevActiveStep + 1 : 0
-    );
-  };
+    )
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) =>
       prevActiveStep > 0 ? prevActiveStep - 1 : images.length - 1
-    );
-  };
+    )
+  }
 
   const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+    setActiveStep(step)
+  }
 
   return (
     <div className={styles.container}>
@@ -86,7 +86,7 @@ function SwipeableTextMobileStepper() {
         </button>
       </Box>
     </div>
-  );
+  )
 }
 
-export default SwipeableTextMobileStepper;
+export default Carousel

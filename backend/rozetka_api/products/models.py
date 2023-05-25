@@ -19,6 +19,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name="products", on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=False)
     slug = models.CharField(max_length=255, null=False)
+<<<<<<< HEAD
+=======
+    description = models.TextField(null=True)
+>>>>>>> c98963b1c8d60ca2c1022c0d248de1a520bd6ab9
     brand = models.CharField(max_length=128, null=True)
     country = models.CharField(max_length=128, null=True)
     color = models.CharField(max_length=128, null=True)
@@ -36,4 +40,8 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='images/product_images/')
 
     def __str__(self):
+<<<<<<< HEAD
         return f"Image for {self.product.title}"
+=======
+        return f"Image for {self.product.title}"
+>>>>>>> c98963b1c8d60ca2c1022c0d248de1a520bd6ab9

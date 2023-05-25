@@ -6,21 +6,33 @@ import { Logo } from "../../assets/logo"
 import Modal from "../Modal/Modal"
 import AuthRegModal from "../AuthRegModal/AuthRegModal"
 import { useState } from "react"
-import { Outlet } from "react-router-dom"
 import Catalog from "../Catalog/Catalog"
+import Basket from "../Basket/Basket"
+import { useNavigate } from "react-router-dom"
+import Badge from "../Badge/Badge"
 
 const Navbar = () => {
   const [openAuth, setOpenAuth] = useState(false)
   const [openBasket, setOpenBasket] = useState(false)
 
+  const navigation = useNavigate()
+
   const handleOpenAuth = () => {
     setOpenAuth(true)
+  }
+
+  const handleOpenBasket = () => {
+    setOpenBasket(true)
+  }
+
+  const handleNavigate = () => {
+    navigation("/")
   }
 
   return (
     <>
       <nav className={styles.nav}>
-        <div className={styles.logoContainer}>
+        <div className={styles.logoContainer} onClick={handleNavigate}>
           <Logo />
         </div>
         <Catalog />
@@ -28,15 +40,23 @@ const Navbar = () => {
         <div className={styles.iconContainer} onClick={handleOpenAuth}>
           <RxPerson className={styles.icon} />
         </div>
-        <div className={styles.iconContainer}>
-          <AiOutlineShoppingCart className={styles.icon} />
+        <div className={styles.iconContainer} onClick={handleOpenBasket}>
+          <Badge>
+            <AiOutlineShoppingCart className={styles.icon} />
+          </Badge>
         </div>
       </nav>
 
-      <Outlet />
-      {openAuth && <Modal>
-                          <AuthRegModal setOpenAuth={setOpenAuth} />
-                   </Modal>}
+      {openAuth && (
+        <Modal setOpen={setOpenAuth}>
+          <AuthRegModal setOpenAuth={setOpenAuth} />
+        </Modal>
+      )}
+      {openBasket && (
+        <Modal setOpen={setOpenBasket}>
+          <Basket setOpen={setOpenBasket} />
+        </Modal>
+      )}
     </>
   )
 }
