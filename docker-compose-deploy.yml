@@ -17,13 +17,6 @@ services:
     depends_on:
       - db
 
-  frontend:
-    build:
-      context: ./frontend
-    working_dir: /frontend
-    ports:
-      - "3000:3000"
-
   db:
     image: postgres:14-alpine
     restart: always

@@ -42,6 +42,8 @@ class SignupView(CreateAPIView):
                          "success": True}
         return Response(data_response, status=HTTP_201_CREATED)
 
+    @staticmethod
+    def
 
 class VerifyEmail(APIView):
     serializer_class = EmailVerificationSerializer
