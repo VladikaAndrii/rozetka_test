@@ -5,6 +5,7 @@ import { addItem } from "../../features/basketSlice";
 import useAxios from "../../hooks/useFetch";
 import styles from "./ProductScreen.module.scss";
 
+
 const ProductScreen = () => {
   const { id } = useParams()
   const [index, setIndex] = useState(0);
