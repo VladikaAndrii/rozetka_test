@@ -1,11 +1,17 @@
 .containerInput{
   position: relative;
+  .explanation,
   .error{
     position: absolute;
     top: -15px;
     left: 5px;
     font-size: 10px;
+  }
+  .error{
     color: red;
+  }
+  .explanation{
+    color: black;
   }
 .input {
   margin-bottom: 20px;

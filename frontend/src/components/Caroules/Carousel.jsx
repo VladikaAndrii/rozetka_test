@@ -7,25 +7,30 @@ import styles from "./Carousel.module.scss"
 
 const images = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
+    id: "1",
     imgPath:
-      "https://images.pexels.com/photos/634538/pexels-photo-634538.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "images/carousel/Carousel.png",
   },
   {
-    label: "Bird",
+    id: "2",
     imgPath:
-      "https://images.pexels.com/photos/981781/pexels-photo-981781.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "images/carousel/Carousel (1).png",
   },
   {
-    label: "Bali, Indonesia",
+    id: "3",
     imgPath:
-      "https://images.pexels.com/photos/1178525/pexels-photo-1178525.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "images/carousel/Carousel (2).png",
   },
   {
-    label: "Goč, Serbia",
+    id: "4",
     imgPath:
-      "https://images.pexels.com/photos/174662/pexels-photo-174662.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "images/carousel/Carousel (3).png",
   },
+  {
+    id: "5",
+    imgPath:
+      "images/carousel/Carousel (4).png",
+  }
 ]
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
@@ -59,7 +64,7 @@ function Carousel() {
           enableMouseEvents
         >
           {images.map((step, index) => (
-            <div key={step.label}>
+            <div key={step.id}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Box
                   component="img"

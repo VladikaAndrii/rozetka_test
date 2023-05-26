@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import styles from "./Product.module.scss";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/basketSlice";
+import useAxios from "../../hooks/useFetch";
+import styles from "./ProductScreen.module.scss";
 
 const getImages = [
   {
@@ -24,10 +28,13 @@ const getImages = [
   },
 ];
 
-const Product = () => {
+const ProductScreen = () => {
+  const { id } = useParams()
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
   const [activeNav, setActiveNav] = useState(1);
+  const {data} = useAxios({url: `http://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productsproduct/`})
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setImages(getImages);
@@ -39,6 +46,10 @@ const Product = () => {
 
     name === "image" ? setIndex(id) : setActiveNav(id);
   };
+console.log(data);
+  const handleClick = () => {
+    dispatch(addItem({id:1, item: "dfsdf"}))
+  }
 
   return (
     <div className={styles.container}>
@@ -84,7 +95,7 @@ const Product = () => {
                 <p className={styles.price}>1000 ГРН</p>
                 <p className={styles.availability}>Е в наявності</p>
               </div>
-              <button className={styles.btnBuy}>Купити</button>
+              <button className={styles.btnBuy} onClick={handleClick}>Купити</button>
               <div className={styles.funcIcons}>
                 <img
                   src="images/funcIconOne.png"
@@ -299,4 +310,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductScreen;

@@ -28,7 +28,6 @@ function App() {
             <Route index element={<HomeScreen />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/products-searched" element={<ProductsScreen />} />
-            {/* <Route path="/products:slug" element={<Product />} /> */}
           </Route>
         </Routes>
       </Router>
