@@ -3,7 +3,7 @@ version: '3.9'
 services:
   app:
     build:
-      context: .
+      context: ./backend
     restart: always
     volumes:
       - static-data:/vol/web
@@ -17,6 +17,13 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend
+    working_dir: /frontend
+    ports:
+      - "3000:3000"
+
   db:
     image: postgres:14-alpine
     restart: always
@@ -29,21 +36,15 @@ services:
 
   proxy:
     build:
-      context: ./proxy
+      context: ./backend/proxy
     restart: always
     depends_on:
       - app
     ports:
-      - 80:8000
+      - 8001:8000
     volumes:
       - static-data:/vol/static
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 3000:3000
+
 
 volumes:
   postgres-data:

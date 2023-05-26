@@ -1,20 +1,18 @@
-# Використовуємо базовий образ Node.js
-FROM node:18.16.0-alpine
-
-# Встановлюємо робочу директорію в контейнері
-WORKDIR /app
-
-# Копіюємо файли package.json та package-lock.json
-COPY package*.json ./
-
-# Виконуємо команду для встановлення залежностей
-RUN npm install
-
-# Копіюємо решту файлів проекту в контейнер
+# ==== CONFIGURE =====
+FROM node:16-alpine
+# Set the working directory to /app inside the container
+WORKDIR /frontend
+# Copy app files
 COPY . .
-
-# Запускаємо команду для збірки React-проекту
+# ==== BUILD =====
+# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
+RUN npm ci --legacy-peer-deps
+# Build the app
 RUN npm run build
-
-# Вказуємо команду, яка виконується при запуску контейнера
-CMD ["npm", "start"]
+# ==== RUN =======
+# Set the env to "production"
+ENV NODE_ENV production
+# Expose the port on which the app will be running (3000 is the default that `serve` uses)
+EXPOSE 3000
+# Start the app
+CMD [ "npx", "serve", "build" ]
