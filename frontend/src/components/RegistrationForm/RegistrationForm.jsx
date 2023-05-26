@@ -29,7 +29,7 @@ const RegistrationForm = () => {
       firstName.length > 3 &&
       lastName.length > 3 &&
       email.length > 0 &&
-      password.length > 6 &&
+      password.length > 5 &&
       phone.length > 0 &&
       isEmail &&
       isPhone
@@ -135,7 +135,7 @@ const RegistrationForm = () => {
     <>
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
         {!isFirstName && (
-          <p className={styles.error}>Ім'я має містити не менше 3-х літер</p>
+          <p className={styles.error}>Ім'я має містити не менше 3-х символів</p>
         )}
         <CustomInput
           type={"text"}
@@ -149,7 +149,7 @@ const RegistrationForm = () => {
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
         {!isLastName && (
           <p className={styles.error}>
-            Прізвище має містити не менше 3-х літер
+            Прізвище має містити не менше 3-х символів
           </p>
         )}
         <CustomInput
@@ -162,7 +162,7 @@ const RegistrationForm = () => {
         />
       </div>
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
-        {!isPhone && <p className={styles.error}>Некорректний номер</p>}
+        {!isPhone ? <p className={styles.error}>Некорректний номер</p> : <p className={styles.explanation}>Номер телефону повинен починатись з "+"</p>}
         <CustomInput
           type={"tel"}
           name={names.phone}

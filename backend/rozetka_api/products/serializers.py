@@ -21,7 +21,11 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
+<<<<<<< HEAD
+        fields = ['id', 'title', 'slug', 'brand', 'country', 'size', 'color', 'category', 'price', 'created_at', 'updated_at', 'images']
+=======
         fields = ['id', 'title', 'slug', 'description', 'brand', 'country', 'size', 'color', 'category', 'price', 'created_at', 'updated_at', 'images']
+>>>>>>> c98963b1c8d60ca2c1022c0d248de1a520bd6ab9
 
     def create(self, validated_data):
         images_data = self.context.get('request').FILES.getlist('images')

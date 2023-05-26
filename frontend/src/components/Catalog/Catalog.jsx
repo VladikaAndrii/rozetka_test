@@ -10,7 +10,7 @@ const Catalog = () => {
   const [active, setActive] = useState(false)
   const [categories, setCategories] = useState(null)
   const { data, error, loading } = useFetch({
-    url: "http://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productscategory/",
+    url: "http://ec2-13-48-28-211.eu-north-1.compute.amazonaws.com/api/productscategory/",
   })
   const products = useSelector((state) => state.products)
 

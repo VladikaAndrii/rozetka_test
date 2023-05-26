@@ -18,7 +18,7 @@ const Authform = () => {
   };
 
   useEffect(() => {
-    if (login.length > 0 && password.length > 6 && (isEmail || isPhone)) {
+    if (login.length > 0 && password.length > 5 && (isEmail || isPhone)) {
       setIsDisBtn(false);
     } else {
       setIsDisBtn(true);
@@ -44,6 +44,7 @@ const Authform = () => {
         return;
       }
       if (password.length > 0 && password.length < 6) {
+        console.log(password.length)
         setIsPassword(false);
         return;
       }
@@ -78,9 +79,9 @@ const Authform = () => {
   return (
     <>
       <div className={styles.containerInput} onBlur={checkTypeValueError}>
-        {!isEmail && !isPhone && (
+        {!isEmail && !isPhone ? (
           <p className={styles.error}>Не корректна пошта або номер телефону</p>
-        )}
+        ) : <p className={styles.explanation}>Номер телефону повинен починатись з "+"</p>}
         <CustomInput
           type={"text"}
           name={names.login}

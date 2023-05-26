@@ -7,12 +7,13 @@ import { useEffect } from "react"
 import Checkout from "./screens/Checkout/Checkout"
 import Layout from "./screens/Layout/Layout"
 import ProductsScreen from "./screens/ProductsScreen/ProductsScreen"
+import ProductScreen from "./screens/ProductScreen/ProductScreen"
 import HomeScreen from "./screens/HomeScreen/HomeScreen"
 
 function App() {
   const dispatch = useDispatch()
   const { data, error, loading } = useFetch({
-    url: "http://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productsproduct/",
+    url: "http://ec2-13-48-28-211.eu-north-1.compute.amazonaws.com/api/productsproduct/",
   })
 
   useEffect(() => {
@@ -28,6 +29,8 @@ function App() {
             <Route index element={<HomeScreen />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/products-searched" element={<ProductsScreen />} />
+            <Route path="/products/:id" element={<ProductScreen />} />
+            <Route path="/products-searched/products/:id" element={<ProductScreen />} />
           </Route>
         </Routes>
       </Router>
