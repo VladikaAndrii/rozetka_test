@@ -1,25 +1,22 @@
+import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import styles from "./ProductCard.module.scss"
 import { MdAddShoppingCart } from "react-icons/md"
 import { addItem } from "../../features/basketSlice"
-import { useNavigate } from "react-router"
 
 const ProductCard = ({ product }) => {
-  const { title, images, price, slug } = product
-  const navigation = useNavigate()
+  const { title, images, price, id } = product
   const dispatch = useDispatch()
 
-  const handleClick = () => {
-    navigation(`/products/:${slug}`)
-  }
 
   const handleAdd = (e) => {
-    e.stopPropagation()
+    e.preventDefault()
     dispatch(addItem(product))
   }
 
   return (
-    <div className={styles.card} onClick={handleClick}>
+    <>
+    <Link to={`products/${id}`} className={styles.card}>
       <img src={images[0].image} className={styles.image} />
       <div className={styles.container}>
         <div className={styles.textContainer}>
@@ -31,7 +28,8 @@ const ProductCard = ({ product }) => {
           <p>Додати до кошика</p>
         </div>
       </div>
-    </div>
+    </Link>
+    </>
   )
 }
 

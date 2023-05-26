@@ -1,68 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../features/basketSlice";
 import useAxios from "../../hooks/useFetch";
 import styles from "./ProductScreen.module.scss";
 
-const getImages = [
-  {
-    id: 0,
-    imgPath:
-      "https://cdn.pixabay.com/photo/2017/04/05/01/12/traveler-2203666_640.jpg",
-  },
-  {
-    id: 1,
-    imgPath:
-      "https://cdn.pixabay.com/photo/2016/11/19/14/56/backpack-1839705_640.jpg",
-  },
-  {
-    id: 2,
-    imgPath:
-      "https://media.istockphoto.com/id/1465056113/uk/%D1%84%D0%BE%D1%82%D0%BE/%D0%BF%D0%BE%D0%BB%D0%BE%D1%82%D0%BD%D0%BE-%D1%80%D1%8E%D0%BA%D0%B7%D0%B0%D0%BA-%D0%B0%D0%BA%D1%81%D0%B5%D1%81%D1%83%D0%B0%D1%80%D0%B8-%D1%96%D0%B7%D0%BE%D0%BB%D1%8C%D0%BE%D0%B2%D0%B0%D0%BD%D1%96-%D0%BD%D0%B0-%D0%B1%D1%96%D0%BB%D0%BE%D0%BC%D1%83-%D1%82%D0%BB%D1%96-%D1%80%D1%8E%D0%BA%D0%B7%D0%B0%D0%BA-%D1%80%D1%83%D1%87%D0%BD%D0%BE%D1%97-%D0%BF%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0%D1%87%D1%96-%D0%B4%D0%BB%D1%8F-%D0%BC%D0%B0%D0%BD%D0%B4%D1%80%D1%96%D0%B2%D0%BD%D0%B8%D0%BA%D1%96%D0%B2.jpg?s=612x612&w=0&k=20&c=z5XObK2azIEmzEwo4ZRulALN9p18zjqCTSByQx6cThw=",
-  },
-  {
-    id: 3,
-    imgPath:
-      "https://cdn.pixabay.com/photo/2018/02/20/10/59/luggage-3167359_1280.jpg",
-  },
-];
 
 const ProductScreen = () => {
   const { id } = useParams()
-  const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
   const [activeNav, setActiveNav] = useState(1);
-  const {data} = useAxios({url: `http://ec2-16-16-218-11.eu-north-1.compute.amazonaws.com/api/productsproduct/`})
+  const {data} = useAxios({url: `http://ec2-13-48-28-211.eu-north-1.compute.amazonaws.com/api/productsproduct/${id}/`})
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setImages(getImages);
-  }, []);
-
   const handleSwitchItem = (e) => {
-    const id = Number(e.target.dataset.id);
+    const idx = Number(e.target.dataset.idx);
     const name = e.target.name;
 
-    name === "image" ? setIndex(id) : setActiveNav(id);
+    name === "image" ? setIndex(idx) : setActiveNav(idx);
   };
-console.log(data);
+
   const handleClick = () => {
-    dispatch(addItem({id:1, item: "dfsdf"}))
+    dispatch(addItem(data));
   }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Сумка Wallaby</h1>
+      <h1 className={styles.title}>{data?.title}</h1>
       <div className={styles.productBaseInfoContainer}>
         <div className={styles.productBaseImagescontainer}>
           <img
-            src={images[index]?.imgPath}
+            src={`http://ec2-13-48-28-211.eu-north-1.compute.amazonaws.com${data?.images[index].image}`}
             className={styles.productImg}
             alt="img"
           />
           <ul className={styles.productImagesList}>
-            {images.map(({ id, imgPath }) => {
+            {data?.images.map(({id, image }, idx) => {
               return (
                 <li
                   key={id}
@@ -70,9 +43,9 @@ console.log(data);
                   className={styles.productImagesListItem}
                 >
                   <img
-                    src={imgPath}
+                    src={`http://ec2-13-48-28-211.eu-north-1.compute.amazonaws.com${image}`}
                     name="image"
-                    data-id={id}
+                    data-idx={idx}
                     className={
                       styles.productImgMin +
                       " " +
@@ -92,7 +65,7 @@ console.log(data);
             </p>
             <div className={styles.buyngBlock}>
               <div className={styles.priceAvailability}>
-                <p className={styles.price}>1000 ГРН</p>
+                <p className={styles.price}>{data?.price} ГРН</p>
                 <p className={styles.availability}>Е в наявності</p>
               </div>
               <button className={styles.btnBuy} onClick={handleClick}>Купити</button>
@@ -156,7 +129,7 @@ console.log(data);
         <ul className={styles.subNavList}>
           <li
             name="subNav"
-            data-id="1"
+            data-idx="1"
             className={
               styles.subNavListItem +
               " " +
@@ -168,7 +141,7 @@ console.log(data);
           </li>
           <li
             name="subNav"
-            data-id="2"
+            data-idx="2"
             className={
               styles.subNavListItem +
               " " +
@@ -180,7 +153,7 @@ console.log(data);
           </li>
           <li
             name="subNav"
-            data-id="3"
+            data-idx="3"
             className={
               styles.subNavListItem +
               " " +
@@ -192,7 +165,7 @@ console.log(data);
           </li>
           <li
             name="subNav"
-            data-id="4"
+            data-idx="4"
             className={
               styles.subNavListItem +
               " " +
@@ -204,7 +177,7 @@ console.log(data);
           </li>
           <li
             name="subNav"
-            data-id="5"
+            data-idx="5"
             className={
               styles.subNavListItem +
               " " +
@@ -218,9 +191,9 @@ console.log(data);
       </div>
       <div className={styles.productDiscriptionBlock}>
         <div className={styles.productDiscription}>
-          <h1 className={styles.discriptionTitle}>Опис Сумка Wallaby</h1>
+          <h1 className={styles.discriptionTitle}>Опис {data?.title}</h1>
           <p className={styles.description}>
-            Міцна та надійна сумка українського виробництва від TM Wallaby.
+            Міцна та надійна сумка українського виробництва від TM {data?.brand}.
             Сумка виготовлена з міцного водовідштовхувального матеріалу стійкого
             до забруднення та пошкоджень. Складається з основного відділення та
             зовнішньої кишені на блискавці спереду. З боків розташовані невеликі
