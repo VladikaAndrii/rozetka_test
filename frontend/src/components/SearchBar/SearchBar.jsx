@@ -1,15 +1,27 @@
 import { AiOutlineSearch } from "react-icons/ai"
 import SearchButton from "../SearchButton/SearchButton"
 import styles from "./SearchBar.module.scss"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
-const SearchBar = ({ value, setValue }) => {
+const SearchBar = () => {
+  const products = useSelector((state) => state.products)
+  const [value, setValue] = useState("")
+
+  const navigation = useNavigate()
+
   const handleChange = (e) => {
     const { value } = e.target
     setValue(value)
   }
 
   const handleSearch = () => {
-    // product.filter((item) => item.title.includes(value))
+    if (!value) return
+    const searchProducts = products.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    )
+    navigation("/products-searched", { state: { searchProducts } })
   }
 
   return (

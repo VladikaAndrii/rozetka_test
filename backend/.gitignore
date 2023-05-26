@@ -1,3 +1,6 @@
 authorization/__pycache__/
 authorization/migrations/__pycache__/
 rozetka_api/__pycache__/
+/data
+*/*/__pycache__/
+*/__pycache__/

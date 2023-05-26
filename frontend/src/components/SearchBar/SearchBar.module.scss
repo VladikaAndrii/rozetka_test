@@ -1,22 +1,22 @@
 @use "../../mixins.scss" as mixin;
 
 .container {
-  width: 40%;
+  width: 45%;
   height: 40px;
   background-color: #fff;
   display: flex;
   border-radius: 12px;
-  border: 1px solid #000;
   overflow: hidden;
   align-items: center;
-  margin-left: auto;
-  margin-right: 12px;
+  margin-inline: auto;
 
   .icon {
     color: rgb(130, 130, 130);
     height: 24px;
     width: 24px;
     margin-inline: 8px;
+    pointer-events: none;
+    position: absolute;
   }
 
   .input {
@@ -24,6 +24,7 @@
     flex: 1;
     outline: none;
     font-size: 16px;
+    padding-left: 40px;
 
     @include mixin.placeholder {
       color: rgb(130, 130, 130);

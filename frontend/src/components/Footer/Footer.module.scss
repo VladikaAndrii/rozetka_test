@@ -1,0 +1,39 @@
+@import "../../mixins.scss";
+
+.container {
+  background: $secondary;
+  display: flex;
+  padding: 30px 70px 50px 70px;
+  gap: 200px;
+
+  .block {
+    .icon {
+      margin-bottom: 40px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 20px;
+
+      img {
+        width: 30px;
+      }
+    }
+  }
+
+  .columns {
+    display: flex;
+    gap: 30px;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+
+      p {
+        font-weight: 400;
+        cursor: pointer;
+      }
+    }
+  }
+}
